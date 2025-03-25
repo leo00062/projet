@@ -170,6 +170,27 @@ a:hover:after {
 main {
   max-width: 1024px;
 }
+main section#hero-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../images/Background.png") no-repeat center center/cover;
+}
+main section#hero-header #content {
+  display: flex;
+  width: 80%;
+  max-width: 800px;
+}
+main section#hero-header #content div {
+  display: flex;
+  flex-direction: column;
+}
+main section:nth-child(1) {
+  min-height: 100vh;
+}
+main section:not(:nth-child(1)) {
+  height: 100px;
+}
 
 html[data-theme=light] {
   background-color: #ececec;
@@ -177,6 +198,9 @@ html[data-theme=light] {
 }
 html[data-theme=light] a {
   color: #212121;
+}
+html[data-theme=light] header {
+  background: #ececec;
 }
 html[data-theme=light] headernav #nav i[data-theme-toggler] {
   color: #212121;
@@ -188,6 +212,9 @@ html[data-theme=dark] {
 }
 html[data-theme=dark] a {
   color: #ececec;
+}
+html[data-theme=dark] header {
+  background: #212121;
 }
 html[data-theme=dark] headernav #nav i[data-theme-toggler] {
   color: #ececec;
