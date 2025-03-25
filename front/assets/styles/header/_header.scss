@@ -1,0 +1,94 @@
+// Dekstop
+header {
+  position: fixed;
+  width: 100%;
+  & nav {
+    max-width: 1280px;
+    margin: 8px auto;
+    display: flex;
+    justify-content: space-between;
+    & #nav {
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-around;
+      & ul {
+        flex-grow: 1;
+        justify-content: space-around;
+        display: flex;
+        & li {
+          & i {
+            display: none;
+          }
+        }
+      }
+    }
+    & #toggle-nav {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  header {
+    & nav {
+      margin: 8px;
+    }
+  }
+}
+
+// Tablet
+@media only screen and (max-width: 768px) {
+  header {
+    & nav {
+      & #nav {
+        border: 1px solid black;
+        position: fixed;
+        right: 10px;
+        top: 50%;
+        padding: 8px;
+        transform: translate(100vw, -50%);
+        transition: transform 0.5s;
+        background: rgba(77, 76, 76, 0.61);
+        display: flex;
+        flex-direction: column;
+        width: 50vw;
+        max-width: 200px;
+        min-height: 50vh;
+        border-radius: 8px;
+        height: 80%;
+        & ul {
+          flex-direction: column;
+          width: fit-content;
+          & li {
+            align-items: center;
+            display: flex;
+            & a {
+              padding: 8px 0;
+            }
+            & i {
+              display: block;
+              font-size: 16px;
+              margin-right: 1rem;
+            }
+          }
+        }
+      }
+      & i[data-theme-toggler] {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+      }
+    }
+    & #nav.tablet {
+      transform: translate(0, -50%);
+    }
+    & i#toggle-nav {
+      display: block;
+      font-size: 20px;
+    }
+  }
+}
+
+// Mobile
+@media only screen and (max-width: 576px) {
+}
