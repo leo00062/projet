@@ -14,25 +14,27 @@
     <script type="module" src="./assets/js/main.js"></script>
     <title>Mon Site Web</title>
   </head>
-
   <body>
     <header>
       <nav>
-        <div id="logo">LOGO</div>
+        <div id="logo"><a href="/">LOGO</a></div>
         <div id="nav">
           <ul>
             <li>
-              <i class="fas fa-folder-open"></i><a href="#"></i>Projet</a>
+              <i class="fas fa-house-user"></i><a href="">Home</a>
             </li>
             <li>
-              <i class="fas fa-book"></i><a href="#"></i>Présentation</a>
+              <i class="fas fa-folder-open"></i><a href="#projet">Le Projet</a>
             </li>
             <li>
-              <i class="fas fa-envelope"></i><a href="#"></i>Contact</a>
+              <i class="fas fa-book"></i><a href="#presentation">Présentation</a>
+              <li>
+                <i class="fas fa-spinner"></i><a href="#carrousel">Carrousel</a>
+              </li>
             </li>
-            <!-- <li>
-              <i class="fas fa-envelope"></i><a href="#"></i></a>
-            </li> -->
+            <li>
+              <i class="fas fa-envelope"></i><a href="#contact">Contact</a>
+            </li>
           </ul>
           <i data-theme-toggler class="fas fa-moon"></i>
         </div>
@@ -41,19 +43,22 @@
     </header>
     <main>
       <section id="hero-header">
+        <h1>Le site pour les nuls</h1>
         <div id="content">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-             Repellendus assumenda repudiandae esse soluta consequatur 
+          <p id="p-left">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+             Repellendus assumenda repudiandae esse soluta consequatur </p>
           <div>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Repellendus assumenda repudiandae esse soluta consequatur </p>
-              <button>En savoir plus ...</button>
+              <button class="info">En savoir plus ...</button>
           </div>
         </div>
       </section>
-      <section id="projet">Projet</section>
+      <section id="projet">Le Projet</section>
       <section id="presentation">Présentation</section>
+      <section id="Carrousel">Carrousel</section>
       <section id="contact">Contact</section>
     </main>
+      <i id="scroll-to-top" class="fas fa-caret-up"></i>
   </body>
 </html>

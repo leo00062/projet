@@ -2,6 +2,7 @@
 header {
   position: fixed;
   width: 100%;
+  z-index: 1000;
   & nav {
     max-width: 1280px;
     margin: 8px auto;
@@ -54,6 +55,7 @@ header {
         width: 50vw;
         max-width: 200px;
         min-height: 50vh;
+        min-height: calc(var(--vh, 1vh) * 50);
         border-radius: 8px;
         height: 80%;
         & ul {

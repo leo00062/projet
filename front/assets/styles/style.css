@@ -87,7 +87,6 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 
@@ -133,8 +132,34 @@ table {
   border-spacing: 0;
 }
 
+@font-face {
+  font-family: "Bruno Ace SC";
+  src: url("/assets/font/Bruno_ace_sc/Bruno_ace_ace.eot");
+  src: url("/assets/font/Bruno_ace_sc/Bruno_ace_ace.eot?#iefix") format("embedded-opentype"), url("/assets/font/Bruno_ace_sc/Bruno_ace_ace.woff2") format("woff2"), url("/assets/font/Bruno_ace_sc/Bruno_ace_ace.woff") format("woff"), url("/assets/font/Bruno_ace_sc/Bruno_ace_ace.ttf") format("truetype"), url("/assets/font/Bruno_ace_sc/Bruno_ace_ace.svg#Bruno Ace SC") format("svg");
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("/assets/font/Roboto/Roboto.eot");
+  src: url("/assets/font/Roboto/Roboto?#iefix") format("embedded-opentype"), url("/assets/font/Roboto/Roboto.woff2") format("woff2"), url("/assets/font/Roboto/Roboto.woff") format("woff"), url("/assets/font/Roboto/Roboto.ttf") format("truetype"), url("/assets/font/Roboto/Roboto.svg#Roboto") format("svg");
+}
 * {
   scroll-behavior: smooth;
+}
+
+html {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+html,
+button {
+  font-family: "Roboto";
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Bruno Ace SC";
 }
 
 img {
@@ -147,7 +172,7 @@ a {
   text-decoration: none;
 }
 
-a:after {
+a:not(#logo a):after {
   content: "";
   position: absolute;
   transform: scaleX(0);
@@ -159,12 +184,45 @@ a:after {
   left: 0;
 }
 
-a:hover {
+a:not(#logo a):hover {
   font-style: italic;
 }
 
-a:hover:after {
+a:not(#logo a):hover:after {
   transform: scaleX(1);
+}
+
+button {
+  padding: 8px;
+  border-radius: 8px;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+button:hover {
+  font-size: italic;
+}
+
+button.info {
+  border: black;
+  color: white;
+  background: rgba(83, 83, 83, 0.767);
+}
+
+button.info:hover {
+  border: white;
+  color: black;
+  background: rgba(185, 182, 182, 0.767);
+}
+
+#scroll-to-top {
+  display: none;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 main {
@@ -172,24 +230,54 @@ main {
 }
 main section#hero-header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url("../images/Background.png") no-repeat center center/cover;
+  background: url("../images/fond-bleu.jpg") no-repeat center center/cover;
+}
+main section#hero-header h1 {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background-color: rgba(222, 216, 216, 0.5);
+  width: 80%;
+  max-width: 600px;
+  padding: 8px 0;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid white;
 }
 main section#hero-header #content {
+  margin-top: 0.5rem;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background-color: rgba(222, 216, 216, 0.5);
   display: flex;
   width: 80%;
-  max-width: 800px;
+  max-width: 600px;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid white;
+  padding-bottom: 8px;
+}
+main section#hero-header #content #p-left {
+  padding: 8px;
 }
 main section#hero-header #content div {
   display: flex;
   flex-direction: column;
+  padding: 8xp;
+}
+main section#hero-header #content div p {
+  padding: 8px;
+}
+main section#hero-header #content div button {
+  margin: auto;
 }
 main section:nth-child(1) {
   min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 main section:not(:nth-child(1)) {
-  height: 100px;
+  height: 400px;
 }
 
 html[data-theme=light] {
@@ -246,9 +334,21 @@ html[data-theme=dark] headernav #nav i[data-theme-toggler] {
     color: #212121;
   }
 }
+@media only screen and (max-width: 768px) {
+  main section#hero-header h1 {
+    width: 50%;
+  }
+  main section#hero-header #content {
+    width: 50%;
+  }
+  main section#hero-header #content #p-left {
+    display: none;
+  }
+}
 header {
   position: fixed;
   width: 100%;
+  z-index: 1000;
 }
 header nav {
   max-width: 1280px;
@@ -293,6 +393,7 @@ header nav #toggle-nav {
     width: 50vw;
     max-width: 200px;
     min-height: 50vh;
+    min-height: calc(var(--vh, 1vh) * 50);
     border-radius: 8px;
     height: 80%;
   }
