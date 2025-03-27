@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="description" content="Le site pour les nuls" />
+    <meta type="keywords" content="nuls, claqué au sol, newbie, beginner" />
+    <!-- Partage Réseaux  -->
+    <meta property="og:url" content="http://localhost:5500" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mon Site Web" />
+    <meta
+      property="og:image"
+      content="http://localhost:5500/assets/images/fond-bleu.jpg"
+    />
+    <meta property="og:description" content="Le site pour les nuls" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
     <link
       rel="stylesheet"
@@ -20,17 +31,17 @@
         <div id="logo"><a href="/">LOGO</a></div>
         <div id="nav">
           <ul>
-            <li>
-              <i class="fas fa-house-user"></i><a href="">Home</a>
-            </li>
+            <li><i class="fas fa-house-user"></i><a href="">Home</a></li>
             <li>
               <i class="fas fa-folder-open"></i><a href="#projet">Le Projet</a>
             </li>
             <li>
-              <i class="fas fa-book"></i><a href="#presentation">Présentation</a>
-              <li>
-                <i class="fas fa-spinner"></i><a href="#carrousel">Carrousel</a>
-              </li>
+              <i class="fas fa-book"></i
+              ><a href="#presentation">Présentation</a>
+            </li>
+
+            <li>
+              <i class="fas fa-spinner"></i><a href="#carrousel">Carrousel</a>
             </li>
             <li>
               <i class="fas fa-envelope"></i><a href="#contact">Contact</a>
@@ -45,20 +56,79 @@
       <section id="hero-header">
         <h1>Le site pour les nuls</h1>
         <div id="content">
-          <p id="p-left">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-             Repellendus assumenda repudiandae esse soluta consequatur </p>
+          <p id="p-left">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Repellendus assumenda repudiandae esse soluta consequatur
+          </p>
           <div>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Repellendus assumenda repudiandae esse soluta consequatur </p>
-              <button class="info">En savoir plus ...</button>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Repellendus assumenda repudiandae esse soluta consequatur
+            </p>
+            <button class="info">En savoir plus ...</button>
           </div>
         </div>
       </section>
       <section id="projet">Le Projet</section>
-      <section id="presentation">Présentation</section>
+      <section id="presentation"></section>
       <section id="Carrousel">Carrousel</section>
       <section id="contact">Contact</section>
+      <div id="reseaux">
+        <a
+          href="javascript:void(0);"
+          onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href) + '&t=' + document.title, '_blank', 'width=600,height=400'); return false;"
+        >
+          <i id="facebook" class="fab fa-facebook-square"></i>
+        </a>
+
+        <a
+          href="javascript:void(0);"
+          onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(window.location.href) + '&title=' + document.title, '_blank', 'width=600,height=400'); return false;"
+        >
+          <i id="linkedin" class="fab fa-linkedin"></i>
+        </a>
+        <a
+          href="javascript:void(0);"
+          onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + document.title, '_blank', 'width=600,height=400'); return false;"
+        >
+          <i id="x" class="fa-brands fa-square-x-twitter"></i>
+        </a>
+        <a
+          href="javascript:void(0);"
+          onclick="window.open('https://www.instagram.com/?url=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400'); return false;"
+        >
+          <i id="instagram" class="fab fa-instagram"></i>
+        </a>
+        </div>
+        <div id="reseaux-mobile">
+          <a
+            href="javascript:void(0);"
+            onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href) + '&t=' + document.title, '_blank', 'width=600,height=400'); return false;"
+          >
+            <i id="facebook" class="fab fa-facebook-square"></i>
+          </a>
+  
+          <a
+            href="javascript:void(0);"
+            onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(window.location.href) + '&title=' + document.title, '_blank', 'width=600,height=400'); return false;"
+          >
+            <i id="linkedin" class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="javascript:void(0);"
+            onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + document.title, '_blank', 'width=600,height=400'); return false;"
+          >
+            <i id="x" class="fa-brands fa-square-x-twitter"></i>
+          </a>
+          <a
+            href="javascript:void(0);"
+            onclick="window.open('https://www.instagram.com/?url=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400'); return false;"
+          >
+            <i id="instagram" class="fab fa-instagram"></i>
+          </a>
+          </div>
+      </div>
     </main>
-      <i id="scroll-to-top" class="fas fa-caret-up"></i>
+    <i id="scroll-to-top" class="fas fa-caret-up"></i>
   </body>
 </html>

@@ -185,6 +185,7 @@ a:not(#logo a):after {
 }
 
 a:not(#logo a):hover {
+  color: rgba(83, 83, 83, 0.767);
   font-style: italic;
 }
 
@@ -226,6 +227,7 @@ button.info:hover {
 }
 
 main {
+  margin: auto;
   max-width: 1024px;
 }
 main section#hero-header {
@@ -345,6 +347,11 @@ html[data-theme=dark] headernav #nav i[data-theme-toggler] {
     display: none;
   }
 }
+@media only screen and (max-width: 768px) {
+  #scroll-to-top {
+    bottom: 3rem;
+  }
+}
 header {
   position: fixed;
   width: 100%;
@@ -425,5 +432,47 @@ header nav #toggle-nav {
   header i#toggle-nav {
     display: block;
     font-size: 20px;
+  }
+}
+#reseaux {
+  display: flex;
+  padding: 8px;
+  gap: 8px;
+  flex-direction: column;
+  border: 1px solid white;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background-color: transparent;
+  border-radius: 8px 0 0 8px;
+  position: fixed;
+  top: 40%;
+}
+#reseaux i {
+  font-size: 20px;
+}
+
+#reseaux-mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 576px) {
+  #reseaux {
+    display: none;
+  }
+  #reseaux-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 8px;
+    width: 100%;
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    background-color: transparent;
+    border-radius: 8px 0 0 8px;
+    position: fixed;
+    bottom: 0;
+  }
+  #reseaux-mobile i {
+    font-size: 40px;
   }
 }/*# sourceMappingURL=style.css.map */
