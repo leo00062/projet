@@ -154,9 +154,9 @@ main {
     min-height: 100vh;
     min-height: calc(var(--vh, 1vh) * 100);
   }
-  & section:not(:nth-child(1)) {
-    height: 400px;
-  }
+  // & section:not(:nth-child(1)) {
+  //   height: 400px;
+  // }
 }
 
 html[data-theme="light"] {

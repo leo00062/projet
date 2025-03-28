@@ -1,0 +1,68 @@
+#content-games {
+  padding-top: 100px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr); // Mobile par défaut
+
+  @media (min-width: 768px) {
+    padding: 100px 1rem 0 1rem;
+    grid-template-columns: repeat(2, 1fr); // Tablette
+    & .game-card {
+      border-radius: 5px !important;
+      height: 400px;
+      & div {
+        padding: 40px 0 1rem 0;
+      }
+      & img:nth-child(2) {
+        object-fit: cover;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr); // Desktop
+    padding: 100px 0 0 0;
+    & .game-card {
+      border-radius: 5px !important;
+      height: 300px;
+      & div {
+        padding: 50px 0 1rem 0;
+      }
+      & img:nth-child(2) {
+        object-fit: cover;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  & .game-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    position: relative;
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    & div {
+      padding: 70px 0 1rem 0;
+      color: $text-color-light;
+    }
+    & img:nth-child(2) {
+      object-fit: cover;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+    & img:nth-child(3) {
+      border-radius: 50%;
+      height: 80px;
+      width: 80px;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
