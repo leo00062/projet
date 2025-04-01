@@ -17,12 +17,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function createCarrousel(games) {
   const carrousel = document.querySelector(".carrousel");
-  // créer un slide par objet
+
+  // Créer un slide par jeu
   games.forEach((game) => {
     const slide = document.createElement("div");
     slide.className = "carrousel-slide";
     const imgGame = document.createElement("img");
-    imgGame.src = game.background_image; // imgGame.setAttribute('src', game.image_url)
+    imgGame.src = game.background_image;
     imgGame.alt = game.name;
     imgGame.addEventListener("click", () =>
       openLightBox(imgGame.src, game.name)
@@ -32,52 +33,134 @@ function createCarrousel(games) {
     caption.className = "carrousel-caption";
     caption.textContent = game.name;
     slide.appendChild(caption);
-    carrousel.appendChild(slide);
+    carrousel?.appendChild(slide);
   });
 
-  let currentIndex = 0;
-  const totalSlide = games.length;
+  // Cloner la dernière slide et l'insérer au début
+  const slides = carrousel.children; // HTMLCollection dynamique
+  const lastSlideClone = slides[games.length - 1].cloneNode(true);
+  carrousel.insertBefore(lastSlideClone, slides[0]);
+
+  // Cloner la première slide et l'ajouter à la fin
+  const firstSlideClone = slides[1].cloneNode(true);
+  carrousel.appendChild(firstSlideClone);
+
+  // On démarre à l'index 1, qui correspond à la première slide réelle
+  let currentIndex = 1;
+  const totalSlides = games.length; // nombre de slides réelles
+
+  // Position initiale (sans transition pour le réglage)
+  carrousel.style.transition = "none";
+  showSlide(currentIndex);
+  setTimeout(() => {
+    carrousel.style.transition = "transform 0.5s ease-in-out";
+  }, 50);
 
   function showSlide(index) {
-    if (index === 0) {
-      carrousel.style.animation = "none";
-      carrousel.style.transform = `translateX(-${index * 100}%)`;
-    } else {
-      carrousel.style.transform = `translateX(-${index * 100}%)`;
-    }
+    carrousel.style.transform = `translateX(-${index * 100}%)`;
   }
 
   const prevButton = document.querySelector(".prev");
   prevButton.addEventListener("click", () => {
-    currentIndex = currentIndex === 0 ? totalSlide - 1 : currentIndex - 1;
+    currentIndex--;
     showSlide(currentIndex);
+    // Si on arrive sur la slide clone du dernier, on repositionne instantanément sur la vraie dernière slide
+    if (currentIndex === 0) {
+      carrousel.addEventListener("transitionend", function handler() {
+        carrousel.style.transition = "none";
+        currentIndex = totalSlides;
+        showSlide(currentIndex);
+        setTimeout(() => {
+          carrousel.style.transition = "transform 0.5s ease-in-out";
+        }, 50);
+        carrousel.removeEventListener("transitionend", handler);
+      });
+    }
   });
 
   const nextButton = document.querySelector(".next");
   nextButton.addEventListener("click", () => {
-    currentIndex = currentIndex === totalSlide - 1 ? 0 : currentIndex + 1;
+    currentIndex++;
     showSlide(currentIndex);
+    // Si on arrive sur la slide clone de la première, repositionnement sur la vraie première slide
+    if (currentIndex === totalSlides + 1) {
+      carrousel.addEventListener("transitionend", function handler() {
+        carrousel.style.transition = "none";
+        currentIndex = 1;
+        showSlide(currentIndex);
+        setTimeout(() => {
+          carrousel.style.transition = "transform 0.5s ease-in-out";
+        }, 50);
+        carrousel.removeEventListener("transitionend", handler);
+      });
+    }
   });
 
+  // Mise à jour du setInterval avec la même logique que pour le bouton next
   function calcSlide() {
-    currentIndex = currentIndex === totalSlide - 1 ? 0 : currentIndex + 1;
+    currentIndex++;
     showSlide(currentIndex);
+    if (currentIndex === totalSlides + 1) {
+      carrousel.addEventListener("transitionend", function handler() {
+        carrousel.style.transition = "none";
+        currentIndex = 1;
+        showSlide(currentIndex);
+        setTimeout(() => {
+          carrousel.style.transition = "transform 0.5s ease-in-out";
+        }, 50);
+        carrousel.removeEventListener("transitionend", handler);
+      });
+    }
   }
 
   let inter;
+  let lightboxIsOpen = false;
   setTimeout(() => {
     inter = setInterval(calcSlide, 3000);
-    carrousel.addEventListener("mouseenter", () => clearInterval(inter));
-    carrousel.addEventListener("mouseleave", () => {
+    const carrouselContainer = document.querySelector("#carrousel-container");
+    carrouselContainer.addEventListener("mouseenter", () =>
+      clearInterval(inter)
+    );
+    carrouselContainer.addEventListener("mouseleave", () => {
       clearInterval(inter);
-      inter = setInterval(calcSlide, 3000);
+      if (!lightboxIsOpen) inter = setInterval(calcSlide, 3000);
     });
   }, 2000);
 
+  const lightbox = document.querySelector("#lightbox");
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) {
+      lightbox.style.display = "none";
+      lightboxIsOpen = false;
+    }
+  });
+
+  window.addEventListener("keydown", (e) => prevOrNext(e));
+  function prevOrNext(e) {
+    if (e.key === "ArrowLeft" || e.code === "ArrowLeft" || e.keyCode === 37) {
+      clearInterval(inter);
+      inter = setInterval(calcSlide, 3000);
+      prevButton.click();
+    } else if (
+      e.key === "ArrowRight" ||
+      e.code === "ArrowRight" ||
+      e.keyCode === 39
+    ) {
+      clearInterval(inter);
+      inter = setInterval(calcSlide, 3000);
+
+      nextButton.click();
+    } else if (e.key === "Escape" || e.code === "Escape" || e.keyCode === 27) {
+      lightbox.style.display = "none";
+      lightboxIsOpen = false;
+    }
+  }
+  // Lightbox et gestion des évènements clavier restent inchangés
   function openLightBox(src, alt) {
-    console.log(src);
+    lightboxIsOpen = true;
     const lightbox = document.querySelector("#lightbox");
     const lightboxImg = document.querySelector("#lightbox-img");
+    clearInterval(inter);
     lightbox.style.display = "flex";
     lightboxImg.src = src;
     lightboxImg.alt = alt;
@@ -87,27 +170,6 @@ function createCarrousel(games) {
   closeButton.addEventListener("click", () => {
     const lightbox = document.querySelector("#lightbox");
     lightbox.style.display = "none";
+    lightboxIsOpen = false;
   });
-
-  const lightbox = document.querySelector("#lightbox");
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === e.currentTarget) {
-      lightbox.style.display = "none";
-    }
-  });
-
-  window.addEventListener("keydown", (e) => prevOrNext(e));
-  function prevOrNext(e) {
-    if (e.key === "ArrowLeft" || e.code === "ArrowLeft" || e.keyCode === 37) {
-      prevButton.click();
-    } else if (
-      e.key === "ArrowRight" ||
-      e.code === "ArrowRight" ||
-      e.keyCode === 39
-    ) {
-      nextButton.click();
-    } else if (e.key === "Escape" || e.code === "Escape" || e.keyCode === 27) {
-      lightbox.style.display = "none";
-    }
-  }
 }
