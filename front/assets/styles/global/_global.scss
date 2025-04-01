@@ -24,10 +24,10 @@
   scroll-behavior: smooth;
 }
 
-html {
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-}
+// html {
+//   height: 100vh;
+//   height: calc(var(--vh, 1vh) * 100);
+// }
 
 html,
 button {
