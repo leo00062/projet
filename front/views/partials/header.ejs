@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Le site pour les nuls" />
+  <meta type="keywords" content="nuls, claqué au sol, newbie, beginner" />
+  <!-- Partage Réseaux  -->
+  <meta property="og:url" content="<%= process.env.SITE_URL %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mon Site Web" />
+  <meta property="og:image" content="<%= process.env.SITE_URL %>/assets/images/fond-bleu.jpg" />
+  <meta property="og:description" content="Le site pour les nuls" />
+  <link rel="stylesheet" href="/assets/styles/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="module" src="assets/js/main.js"></script>
+  <title>
+    <%= typeof title !== 'undefined' ? 'Mon Site Web | ' + title : 'Mon Site Web' %>
+  </title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div id="logo"><a href="/">LOGO</a></div>
+      <div id="nav">
+        <ul>
+          <li><i class="fas fa-house-user"></i><a href="">Home</a></li>
+          <li>
+            <i class="fas fa-folder-open"></i><a href="#projet">Le Projet</a>
+          </li>
+          <li>
+            <i class="fas fa-book"></i><a href="#presentation">Présentation</a>
+          </li>
+
+          <li>
+            <i class="fas fa-spinner"></i><a href="#carrousel">Carrousel</a>
+          </li>
+          <li>
+            <i class="fas fa-envelope"></i><a href="/contact">Contact</a>
+          </li>
+          <li>
+            <i class="fas fa-photo-film"></i><a href="/galerie">Galerie</a>
+          </li>
+        </ul>
+        <i data-theme-toggler class="fas fa-moon"></i>
+      </div>
+      <i id="toggle-nav" class="fas fa-bars"></i>
+    </nav>
+  </header>
+</body>
+
+</html>

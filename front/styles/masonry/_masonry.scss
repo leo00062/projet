@@ -1,0 +1,38 @@
+main {
+  padding: 4rem 0;
+}
+
+/* Conteneur de la galerie en mode masonry */
+ul.masonry-grid {
+  padding: 0;
+  column-count: 1;
+  column-gap: 10px;
+  & li.masonry-item {
+    break-inside: avoid; // facultatif pour images
+    margin-bottom: 10px;
+    & img {
+      border-radius: 10px;
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  ul.masonry-grid {
+    column-count: 2;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  ul.masonry-grid {
+    column-count: 3;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  ul.masonry-grid {
+    column-count: 4;
+  }
+}

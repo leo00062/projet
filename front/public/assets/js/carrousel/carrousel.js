@@ -2,8 +2,14 @@ import { fetchData } from "../lib/function.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   fetchData({
-    route:
-      "/games?key=248a243b268d4e3487d7be640ce8c4d5&dates=2019-09-01,2019-09-30&platforms=18,1,7",
+    route: "/games",
+    options: {
+      params: {
+        key: "248a243b268d4e3487d7be640ce8c4d5",
+        dates: "2019-09-01,2019-09-30",
+        platforms: "18,1,7",
+      },
+    },
   })
     .then((data) => data.results)
     .then((games) => {
@@ -113,25 +119,36 @@ function createCarrousel(games) {
     }
   }
 
+  const closeLightBox = () => {
+    const lightbox = document.querySelector("#lightbox");
+    lightbox.style.display = "none";
+    lightboxIsOpen = false;
+    startInterval();
+  };
+
   let inter;
   let lightboxIsOpen = false;
-  setTimeout(() => {
+
+  function startInterval() {
     inter = setInterval(calcSlide, 3000);
+  }
+
+  setTimeout(() => {
+    startInterval();
     const carrouselContainer = document.querySelector("#carrousel-container");
     carrouselContainer.addEventListener("mouseenter", () =>
       clearInterval(inter)
     );
     carrouselContainer.addEventListener("mouseleave", () => {
       clearInterval(inter);
-      if (!lightboxIsOpen) inter = setInterval(calcSlide, 3000);
+      if (!lightboxIsOpen) startInterval();
     });
   }, 2000);
 
   const lightbox = document.querySelector("#lightbox");
   lightbox.addEventListener("click", (e) => {
     if (e.target === e.currentTarget) {
-      lightbox.style.display = "none";
-      lightboxIsOpen = false;
+      closeLightBox();
     }
   });
 
@@ -139,7 +156,7 @@ function createCarrousel(games) {
   function prevOrNext(e) {
     if (e.key === "ArrowLeft" || e.code === "ArrowLeft" || e.keyCode === 37) {
       clearInterval(inter);
-      inter = setInterval(calcSlide, 3000);
+      startInterval();
       prevButton.click();
     } else if (
       e.key === "ArrowRight" ||
@@ -147,12 +164,10 @@ function createCarrousel(games) {
       e.keyCode === 39
     ) {
       clearInterval(inter);
-      inter = setInterval(calcSlide, 3000);
-
+      startInterval();
       nextButton.click();
     } else if (e.key === "Escape" || e.code === "Escape" || e.keyCode === 27) {
-      lightbox.style.display = "none";
-      lightboxIsOpen = false;
+      closeLightBox();
     }
   }
   // Lightbox et gestion des évènements clavier restent inchangés
@@ -169,7 +184,6 @@ function createCarrousel(games) {
   const closeButton = document.querySelector(".close");
   closeButton.addEventListener("click", () => {
     const lightbox = document.querySelector("#lightbox");
-    lightbox.style.display = "none";
-    lightboxIsOpen = false;
+    closeLightBox();
   });
 }
