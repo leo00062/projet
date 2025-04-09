@@ -1,7 +1,120 @@
+// main {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 100vh;
+//   min-height: calc(var(--vh, 1vh) * 100);
+// }
+
+/* Appliquer box-sizing pour une gestion correcte des dimensions */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 main {
+  padding: 4rem 0;
+}
+
+#contact-form {
+  min-height: inherit;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#contact-form h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#contact-form form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+/* Wrapper pour positionner l'icône de validation */
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+  width: 100%;
+  padding: 0.75rem;
+  padding-right: 2.5rem; /* Espace pour l'icône */
+  border: 1px solid #2c3e50;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.input-wrapper input:focus,
+.input-wrapper textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+/* Positionnement de l'icône de validation */
+.validation-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  display: none; /* Par défaut caché */
+}
+
+/* Affichage de l'icône lorsque le champ est valide */
+input.valid ~ .validation-icon,
+textarea.valid ~ .validation-icon {
+  display: block;
+  color: #2ecc71; /* Vert */
+}
+
+.invalid {
+  border-color: #e74c3c;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Style pour les messages de réponse */
+.alert {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: #2ecc71;
+  color: #0c640c;
+}
+
+.alert-error {
+  background-color: #e74c3c;
+  color: #fff;
 }

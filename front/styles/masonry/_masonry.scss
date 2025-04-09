@@ -36,3 +36,52 @@ ul.masonry-grid {
     column-count: 4;
   }
 }
+
+// Lightbox
+#lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.747);
+  & span {
+    z-index: 1001;
+  }
+}
+
+#lightbox-img {
+  max-height: 100vh;
+  transition: transform 0.3s ease-in-out; // Animation douce pour le zoom
+}
+
+#lightbox-img.zoomed {
+  cursor: pointer;
+}
+
+#lightbox .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Ajustements responsive */
+@media (max-width: 768px) {
+  #lightbox-img {
+    width: 90%;
+  }
+}

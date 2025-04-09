@@ -39,6 +39,17 @@
   </div>
 </div>
 <i id="scroll-to-top" class="fas fa-caret-up"></i>
+
+<footer>
+  &copy; <span class="year"></span> by <a href="<%= process.env.SITE_URL %>">Mon Site Web</a>
+  <script>
+    const footerYear = document.querySelectorAll(".year");
+    footerYear.forEach(copyright => {
+      copyright.textContent = new Date().getFullYear();
+    });
+  </script>
+</footer>
+
 </body>
 
 </html>

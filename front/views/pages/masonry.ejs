@@ -1,5 +1,6 @@
 <head>
   <link rel="stylesheet" href="<%= process.env.SITE_URL%>/assets/styles/masonry.css" />
+  <script type="module" src="<%= process.env.SITE_URL%>/assets/js/lightbox/lightbox.js"></script>
 </head>
 
 <%- include('../partials/header', { tittle: 'Galerie'}) %>
@@ -17,6 +18,10 @@
     <!-- fin html natif -->
     <%  }) %>
   </ul>
+  <div id="lightbox">
+    <span class="close">&#x2716;</span>
+    <img src="" alt="" class="lightbox-content" id="lightbox-img">
+  </div>
 </main>
 
 <%- include('../partials/footer') %>
